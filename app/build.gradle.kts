@@ -39,7 +39,12 @@ android {
 }
 
 dependencies {
-    implementation("androidx.cardview:cardview:1.0.0")
+    //Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
+    implementation(libs.glide)
+    implementation(libs.androidx.cardview)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
