@@ -12,16 +12,15 @@ import com.muflidevs.dicodingevent.databinding.ItemHorizontalBinding
 
 class HorizontalListAdapter(private val context : Context) : ListAdapter<DetailData,
         HorizontalListAdapter.MyViewHolder>(DIFF_CALLBACK) {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val binding = ItemHorizontalBinding.inflate(LayoutInflater.from(parent.context))
+        val binding = ItemHorizontalBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return MyViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder : MyViewHolder, position : Int) {
-        val imageLogo = getItem(position)
-        val title = getItem(position)
-        holder.bind(imageLogo)
-        holder.bind(title)
+        val detailData = getItem(position)
+        holder.bind(detailData)
     }
     inner class MyViewHolder(val binding : ItemHorizontalBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(detail : DetailData) {

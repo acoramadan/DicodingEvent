@@ -6,16 +6,15 @@ import kotlinx.parcelize.Parcelize
 
 data class EventsResponse (
     @field:SerializedName("error")
-    val errorMsg : String? = null,
+    val errorMsg : String,
 
     @field:SerializedName("message")
-    val message : String? = null,
+    val message : String,
 
     @field:SerializedName("listEvents")
-    val data : List<DetailData>? = null
+    val data : List<DetailData>
 )
 
-@Parcelize
 data class DetailData (
     @field : SerializedName("id")
     val id : Int? = null,
@@ -58,5 +57,5 @@ data class DetailData (
 
     @field: SerializedName("link")
     val link : String? = null,
-) : Parcelable
+)
 
