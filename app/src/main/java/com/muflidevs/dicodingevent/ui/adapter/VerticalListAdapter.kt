@@ -6,14 +6,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.muflidevs.dicodingevent.data.response.DetailData
-import com.muflidevs.dicodingevent.databinding.ItemHorizontalBinding
+import com.muflidevs.dicodingevent.databinding.ItemVerticalBinding
 
-class VerticalListAdapter(context : Context) : ListAdapter<DetailData,
+class VerticalListAdapter(private val context : Context) : ListAdapter<DetailData,
         VerticalListAdapter.MyViewHolder>(DIFF_CALLBACK){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val binding = ItemHorizontalBinding.inflate(LayoutInflater.from(parent.context))
+        val binding = ItemVerticalBinding.inflate(LayoutInflater.from(parent.context))
         return MyViewHolder(binding)
     }
 
@@ -23,10 +24,17 @@ class VerticalListAdapter(context : Context) : ListAdapter<DetailData,
         holder.bind(imageLogo)
         holder.bind(title)
     }
-    inner class MyViewHolder(val binding : ItemHorizontalBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class MyViewHolder(val binding : ItemVerticalBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(detail : DetailData) {
-
-            binding.title.text = "${detail.name}"
+            Glide.with(context)
+                .load(detail.imageLogo)
+                .into(binding.image)
+            binding.judul.text = "${detail.name}"
+            binding.penyelenggara.text = "${detail.ownerName}"
+            binding.waktu.text = getWaktu(detail)
+        }
+        fun getWaktu(detail: DetailData) : String {
+            return "${detail.beginTime} - ${detail.endTime}"
         }
     }
     companion object{

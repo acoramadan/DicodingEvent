@@ -10,6 +10,7 @@
     android:layout_marginEnd="8dp"
     android:layout_marginTop="8dp"
     android:layout_marginBottom="8dp"
+    android:padding="20dp"
     app:cardCornerRadius="4dp">
 
 
@@ -32,25 +33,28 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/judul"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"
-                android:textSize="23sp"
+                android:textSize="18sp"
                 tools:text="Nama Acara"
                 />
 
             <TextView
+                android:id="@+id/penyelenggara"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
-                android:textSize="18sp"
+                android:textSize="13sp"
                 tools:text="Penyelenggara acara"/>
 
             <TextView
+                android:id="@+id/waktu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_light"
-                android:textSize="18sp"
+                android:textSize="12sp"
                 tools:text="18:00 - 21:00"/>
         </LinearLayout>
     </LinearLayout>

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.muflidevs.dicodingevent.R
@@ -42,11 +43,11 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
-        findEvent(8642)
-
+        findEventHorizontal()
+        findEventVertical()
     }
-    private fun findEvent(eventId : Int) {
-        val client = ApiConfig.getApiService().getEvents(eventId)
+    private fun findEventHorizontal() {
+        val client = ApiConfig.getApiService().getEvents(active = -1)
         client.enqueue(object : Callback<EventsResponse> {
             override fun onResponse(
                 call : Call<EventsResponse>,
@@ -67,14 +68,42 @@ class HomeFragment : Fragment() {
             }
         })
     }
-
+    private fun findEventVertical() {
+        val client = ApiConfig.getApiService().getEvents(active = 0)
+        client.enqueue(object : Callback<EventsResponse> {
+            override fun onResponse(
+                call: Call<EventsResponse>,
+                response : Response<EventsResponse>
+            ) {
+                if(response.isSuccessful) {
+                    val responseBody = response.body()
+                    if(responseBody != null) {
+                        setEventDataVertical(responseBody.data)
+                    }
+                    else{
+                        Log.e(TAG, "onFailure : ${response.message()}")
+                    }
+                }
+            }
+            override fun onFailure(error : Call<EventsResponse>, msg : Throwable) {
+                Log.e(TAG, "onFailure : ${msg.message}")
+            }
+        })
+    }
     private fun setEventData(event : List<DetailData>) {
             rvHorizontalAdapter.submitList(event)
     }
+    private fun setEventDataVertical(event : List<DetailData>) {
+        rvVerticalAdapter.submitList(event)
+    }
     private fun setupRecyclerView() {
         rvHorizontalAdapter = HorizontalListAdapter(requireContext())
-        binding.horizontalOnly.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.horizontalOnly.layoutManager = LinearLayoutManager(context, GridLayoutManager.HORIZONTAL, false)
         binding.horizontalOnly.adapter = rvHorizontalAdapter
+
+        rvVerticalAdapter = VerticalListAdapter(requireContext())
+        binding.verticalOnly.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
+        binding.verticalOnly.adapter = rvVerticalAdapter
     }
     private fun showRecyleList() {
 
