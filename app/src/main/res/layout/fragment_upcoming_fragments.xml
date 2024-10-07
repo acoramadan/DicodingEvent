@@ -5,10 +5,35 @@
     android:layout_height="match_parent"
     tools:context=".fragments.UpcomingFragments">
 
-    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/upcoming" />
+        android:fontFamily="@font/poppins_bold"
+        android:textSize="25sp"
+        android:paddingTop="40dp"
+        android:layout_marginStart="25dp"
+        android:text="@string/dicoding_event" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_light"
+        android:textSize="15sp"
+        android:text="@string/upcoming_events"
+        android:layout_marginStart="25dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/vertical_only"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="15dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="20dp"/>
+    </LinearLayout>
 
 </FrameLayout>

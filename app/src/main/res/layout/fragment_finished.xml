@@ -6,29 +6,51 @@
     android:layout_height="match_parent"
     tools:context=".fragments.FinishedFragment">
 
-    <com.google.android.material.search.SearchBar
-        android:id="@+id/searchBar"
+    <LinearLayout
+        android:id="@+id/linear_ly"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="52dp"
-        android:layout_gravity="center|top"
-        android:hint="@string/app_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-    </com.google.android.material.search.SearchBar>
+        android:orientation="vertical">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="25sp"
+            android:paddingTop="40dp"
+            android:layout_marginStart="25dp"
+            android:text="@string/dicoding_event" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
+            android:textSize="15sp"
+            android:text="@string/finished"
+            android:layout_marginStart="25dp"/>
+        <com.google.android.material.search.SearchBar
+            android:id="@+id/searchBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_gravity="center|top"
+            android:hint="@string/app_name">
+        </com.google.android.material.search.SearchBar>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/vertical_only"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="2dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="20dp"/>
+    </LinearLayout>
     <com.google.android.material.search.SearchView
         android:id="@+id/searchView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|top"
-        app:layout_anchor="@id/searchBar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:visibility="gone"
+        app:layout_anchor="@id/searchBar"/>
 
 </FrameLayout>

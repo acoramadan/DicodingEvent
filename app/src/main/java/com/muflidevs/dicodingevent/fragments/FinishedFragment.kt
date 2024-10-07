@@ -4,18 +4,26 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.search.SearchBar
 import com.google.android.material.search.SearchView
 import com.muflidevs.dicodingevent.R
+import com.muflidevs.dicodingevent.data.response.DetailData
 import com.muflidevs.dicodingevent.databinding.FragmentFinishedBinding
+import com.muflidevs.dicodingevent.ui.adapter.SpaceItemDecoration
+import com.muflidevs.dicodingevent.ui.viewmodel.MainViewModelFinish
+import com.muflidevs.dicodingevent.ui.adapter.VerticalListAdapter
 
 
-class FinishedFragment : Fragment() {
+class FinishedFragment : Fragment(), View.OnClickListener {
     private lateinit var binding : FragmentFinishedBinding
     private lateinit var searchBar: SearchBar
     private lateinit var searcView : SearchView
+    private lateinit var rvVerticalAdapter : VerticalListAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,20 +33,51 @@ class FinishedFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         searcView = binding.searchView
         searchBar = binding.searchBar
-        with(binding) {
-            searchView.setupWithSearchBar(searchBar)
-            searchView
-                .editText
-                .setOnEditorActionListener { _, _, _ ->
-                    searchBar.setText(searchView.text)
-                    searchView.hide()
-                    Toast.makeText(this@FinishedFragment.context, searchView.text,Toast.LENGTH_SHORT).show()
-                    false
-                }
+        searchBar.setOnClickListener(this)
+        setupRecyclerView()
+        val vertical = ViewModelProvider(this,ViewModelProvider.NewInstanceFactory())[MainViewModelFinish::class.java]
+        vertical.listEvent.observe(viewLifecycleOwner) { value ->
+            setEventDataVertical(value)
         }
-        super.onViewCreated(view, savedInstanceState)
+    }
+
+
+    private fun setEventDataVertical(event : List<DetailData>) {
+        rvVerticalAdapter.submitList(event)
+    }
+    private fun setupRecyclerView() {
+
+        rvVerticalAdapter = VerticalListAdapter(requireContext())
+        binding.verticalOnly.layoutManager = LinearLayoutManager(context,
+            LinearLayoutManager.VERTICAL,false)
+        binding.verticalOnly.adapter = rvVerticalAdapter
+        binding.verticalOnly.addItemDecoration(
+            SpaceItemDecoration(24)
+        )
+        binding.verticalOnly.clipToPadding = false
+    }
+
+    override fun onClick(view: View?) {
+       when(view?.id) {
+           R.id.searchBar-> {
+               searcView.visibility = VISIBLE
+               with(binding) {
+                   searchView.setupWithSearchBar(searchBar)
+                   searchView
+                       .editText
+                       .setOnEditorActionListener { _, _, _ ->
+                           searchBar.setText(searchView.text)
+                           searchView.hide()
+                           Toast.makeText(this@FinishedFragment.context, searchView.text,Toast.LENGTH_SHORT).show()
+                           false
+                       }
+               }
+           }
+       }
     }
 
 }

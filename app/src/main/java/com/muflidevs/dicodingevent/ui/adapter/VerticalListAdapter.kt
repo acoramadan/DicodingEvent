@@ -34,7 +34,7 @@ class VerticalListAdapter(private val context : Context) : ListAdapter<DetailDat
             binding.waktu.text = getWaktu(detail)
         }
         fun getWaktu(detail: DetailData) : String {
-            return "${detail.beginTime} - ${detail.endTime}"
+            return "Waktu Mulai : ${detail.beginTime}\nWaktu Selesai : ${detail.endTime}"
         }
     }
     companion object{
