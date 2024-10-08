@@ -26,7 +26,7 @@ class HorizontalListAdapter(private val context : Context, private val onItemCli
         intent.putExtra("EXTRA_ID",position)
         holder.bind(detailData,onItemClicked)
     }
-    inner class MyViewHolder(val binding : ItemHorizontalBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class MyViewHolder(private val binding : ItemHorizontalBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(detail : DetailData,onItemClicked: (DetailData) -> Unit) {
            Glide.with(context)
                .load(detail.imageLogo)

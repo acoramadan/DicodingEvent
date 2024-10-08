@@ -29,7 +29,7 @@ class FinishedFragment : Fragment(), View.OnClickListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
        binding = FragmentFinishedBinding.inflate(inflater,container,false)
         return binding.root
     }
@@ -55,14 +55,12 @@ class FinishedFragment : Fragment(), View.OnClickListener {
         rvVerticalAdapter.submitList(event)
     }
     private fun setupRecyclerView() {
-
-        rvVerticalAdapter = VerticalListAdapter(requireContext()){detailData ->
-            val intent = Intent(context,DetailActivity::class.java)
+        rvVerticalAdapter = VerticalListAdapter(requireContext()) { detailData ->
+            val intent = Intent(context, DetailActivity::class.java)
+            intent.putExtra("EXTRA_DETAIL", detailData)
             startActivity(intent)
         }
-
-        binding.verticalOnly.layoutManager = LinearLayoutManager(context,
-            LinearLayoutManager.VERTICAL,false)
+        binding.verticalOnly.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
         binding.verticalOnly.adapter = rvVerticalAdapter
         binding.verticalOnly.addItemDecoration(
             SpaceItemDecoration(24)
@@ -89,7 +87,7 @@ class FinishedFragment : Fragment(), View.OnClickListener {
        }
     }
     private fun showLoading(isLoading : Boolean) {
-        binding.progressBar.visibility = if(isLoading) View.VISIBLE else View.GONE
+        binding.progressBar.visibility = if(isLoading) VISIBLE else View.GONE
     }
 
 }

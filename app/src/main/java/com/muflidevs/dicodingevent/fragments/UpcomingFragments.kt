@@ -44,7 +44,8 @@ class UpcomingFragments : Fragment() {
     private fun setupRecyclerView() {
 
         rvVerticalAdapter = VerticalListAdapter(requireContext()) { detailData ->
-            val intent = Intent(context,DetailActivity::class.java)
+            val intent = Intent(context, DetailActivity::class.java)
+            intent.putExtra("EXTRA_DETAIL", detailData)
             startActivity(intent)
         }
         binding.verticalOnly.layoutManager = LinearLayoutManager(context,
