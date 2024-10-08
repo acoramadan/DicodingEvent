@@ -1,20 +1,14 @@
 package com.muflidevs.dicodingevent.ui.adapter
 
 import android.content.Context
-import android.content.Intent
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.muflidevs.dicodingevent.R
 import com.muflidevs.dicodingevent.data.response.DetailData
 import com.muflidevs.dicodingevent.databinding.ItemVerticalBinding
-import com.muflidevs.dicodingevent.fragments.HomeFragment
-import com.muflidevs.dicodingevent.ui.DetailActivity
 
 class VerticalListAdapter(private val context : Context, private val onItemClicked: (DetailData) -> Unit) : ListAdapter<DetailData,
         VerticalListAdapter.MyViewHolder>(DIFF_CALLBACK){
@@ -32,7 +26,7 @@ class VerticalListAdapter(private val context : Context, private val onItemClick
             onItemClicked(detailData)
         }
     }
-    inner class MyViewHolder(val binding : ItemVerticalBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class MyViewHolder(private val binding : ItemVerticalBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(detail : DetailData) {
             Glide.with(context)
                 .load(detail.imageLogo)
@@ -45,7 +39,7 @@ class VerticalListAdapter(private val context : Context, private val onItemClick
                 onItemClicked(detail)
             }
         }
-        fun getWaktu(detail: DetailData) : String {
+        private fun getWaktu(detail: DetailData) : String {
             return "Waktu Mulai : ${detail.beginTime}\nWaktu Selesai : ${detail.endTime}"
         }
     }

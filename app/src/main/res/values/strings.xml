@@ -52,4 +52,7 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <string name="daftar">Daftar</string>
+    <string name="waktu_mulai">Waktu Mulai : </string>
+    <string name="kuota">Kuota :</string>
+    <string name="description">description</string>
 </resources>

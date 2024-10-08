@@ -35,42 +35,80 @@
 
         <TextView
             android:id="@+id/name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/poppins_extrabold"
             tools:text="Judul" />
 
         <TextView
             android:id="@+id/ownerName"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:textAlignment="center"
             android:fontFamily="@font/poppins_bold"
+            android:layout_marginBottom="15dp"
             tools:text="Owner Name" />
 
-        <TextView
-            android:id="@+id/beginTime"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins"
-            android:textSize="15sp"
-            tools:text="Waktu Mulai" />
+            android:padding="3dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="15sp"
+                android:text="@string/waktu_mulai" />
+
+            <TextView
+                android:id="@+id/beginTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:padding="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="15sp"
+                android:text="@string/kuota"/>
+
+            <TextView
+                android:id="@+id/quota"
+                android:layout_width="78dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:textSize="15sp"/>
+
+
+        </LinearLayout>
+
 
         <TextView
-            android:id="@+id/quota"
+            android:padding="3dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins"
-            android:textSize="15sp"
-            tools:text="Kuota" />
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/description" />
 
         <TextView
             android:id="@+id/description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins"
-            tools:text="description" />
+            android:fontFamily="@font/poppins"/>
+
     </LinearLayout>
 
     <Button
