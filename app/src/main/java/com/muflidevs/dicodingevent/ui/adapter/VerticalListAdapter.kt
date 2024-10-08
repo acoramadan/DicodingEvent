@@ -29,17 +29,8 @@ class VerticalListAdapter(private val context : Context, private val onItemClick
         holder.bind(detailData)
 
         holder.itemView.setOnClickListener {
-            val fragment = HomeFragment()
-            val bundle = Bundle()
-            bundle.putInt("EXTRA_ID", position)
-            fragment.arguments = bundle
-
-            (context as AppCompatActivity).supportFragmentManager.beginTransaction()
-                .replace(R.id.vertical_only, fragment)
-                .addToBackStack(null)
-                .commit()
+            onItemClicked(detailData)
         }
-
     }
     inner class MyViewHolder(val binding : ItemVerticalBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(detail : DetailData) {
