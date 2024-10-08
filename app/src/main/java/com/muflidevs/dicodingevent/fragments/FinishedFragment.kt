@@ -1,5 +1,6 @@
 package com.muflidevs.dicodingevent.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import com.google.android.material.search.SearchView
 import com.muflidevs.dicodingevent.R
 import com.muflidevs.dicodingevent.data.response.DetailData
 import com.muflidevs.dicodingevent.databinding.FragmentFinishedBinding
+import com.muflidevs.dicodingevent.ui.DetailActivity
 import com.muflidevs.dicodingevent.ui.adapter.SpaceItemDecoration
 import com.muflidevs.dicodingevent.ui.viewmodel.MainViewModelFinish
 import com.muflidevs.dicodingevent.ui.adapter.VerticalListAdapter
@@ -43,6 +45,9 @@ class FinishedFragment : Fragment(), View.OnClickListener {
         vertical.listEvent.observe(viewLifecycleOwner) { value ->
             setEventDataVertical(value)
         }
+        vertical.isLoading.observe(viewLifecycleOwner) {
+            showLoading(it)
+        }
     }
 
 
@@ -51,7 +56,11 @@ class FinishedFragment : Fragment(), View.OnClickListener {
     }
     private fun setupRecyclerView() {
 
-        rvVerticalAdapter = VerticalListAdapter(requireContext())
+        rvVerticalAdapter = VerticalListAdapter(requireContext()){detailData ->
+            val intent = Intent(context,DetailActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.verticalOnly.layoutManager = LinearLayoutManager(context,
             LinearLayoutManager.VERTICAL,false)
         binding.verticalOnly.adapter = rvVerticalAdapter
@@ -78,6 +87,9 @@ class FinishedFragment : Fragment(), View.OnClickListener {
                }
            }
        }
+    }
+    private fun showLoading(isLoading : Boolean) {
+        binding.progressBar.visibility = if(isLoading) View.VISIBLE else View.GONE
     }
 
 }

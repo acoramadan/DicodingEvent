@@ -26,6 +26,14 @@
             android:textSize="15sp"
             android:text="@string/upcoming_events"
             android:layout_marginStart="25dp"/>
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            tools:visibility="visible" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/horizontal_only"

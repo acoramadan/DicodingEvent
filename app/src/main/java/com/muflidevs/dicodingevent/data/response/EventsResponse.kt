@@ -15,6 +15,7 @@ data class EventsResponse (
     val data : List<DetailData>
 )
 
+@Parcelize
 data class DetailData (
     @field : SerializedName("id")
     val id : Int? = null,
@@ -57,5 +58,5 @@ data class DetailData (
 
     @field: SerializedName("link")
     val link : String? = null,
-)
+) : Parcelable
 

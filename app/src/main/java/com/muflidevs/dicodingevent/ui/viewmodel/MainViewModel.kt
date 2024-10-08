@@ -13,9 +13,6 @@ import retrofit2.Response
 
 class MainViewModel : ViewModel() {
 
-    private val _Events = MutableLiveData<DetailData>()
-    val event : LiveData<DetailData> = _Events
-
     private val _listEvents = MutableLiveData<List<DetailData>>()
     val listEvent : LiveData<List<DetailData>> = _listEvents
 
@@ -30,6 +27,7 @@ class MainViewModel : ViewModel() {
 
     }
     private fun findEventHorizontal() {
+        _isLoading.value = true
         val client = ApiConfig.getApiService().getEvents(active = 1)
         client.enqueue(object : Callback<EventsResponse> {
             override fun onResponse(
@@ -39,12 +37,14 @@ class MainViewModel : ViewModel() {
                 _isLoading.value = false
                 if(response.isSuccessful) {
                     _listEvents.value = response.body()?.data
+                    Log.e(TAG,"$response\n${response.body()?.data}")
                 }else {
                     Log.e(TAG,"onFailure : ${response.message()}")
                 }
             }
 
             override fun onFailure(p0: Call<EventsResponse>, p1: Throwable) {
+                _isLoading.value = false
                 Log.e(TAG,"onFailure : ${p1.message}")
             }
         })
