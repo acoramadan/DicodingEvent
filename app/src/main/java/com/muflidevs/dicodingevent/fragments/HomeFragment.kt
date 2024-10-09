@@ -2,14 +2,15 @@ package com.muflidevs.dicodingevent.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.muflidevs.dicodingevent.network.Network
 import com.muflidevs.dicodingevent.data.response.DetailData
 import com.muflidevs.dicodingevent.databinding.FragmentHomeBinding
 import com.muflidevs.dicodingevent.ui.DetailActivity
@@ -25,10 +26,6 @@ class HomeFragment : Fragment() {
     private lateinit var rvVerticalAdapter: VerticalListAdapter
     private var position: Int = 0
 
-    companion object {
-        private const val TAG = "HomeFragment"
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,7 +34,6 @@ class HomeFragment : Fragment() {
 
         arguments?.let {
             position = it.getInt("EXTRA_ID", 0)
-            Log.d(TAG, "Position received: $position")
         }
         return binding.root
     }
@@ -50,12 +46,19 @@ class HomeFragment : Fragment() {
 
         mainViewModel.listEvent.observe(viewLifecycleOwner) { value ->
             setEventData(value)
+
         }
         mainViewVertical.listEvent.observe(viewLifecycleOwner) { value ->
             setEventDataVertical(value)
         }
         mainViewModel.isLoading.observe(viewLifecycleOwner) {
             showLoading(it)
+        }
+        if(!Network.isNetworkAvailable(context)) {
+            Toast.makeText(context,"No internet connection. Please turn on your network", Toast.LENGTH_LONG).show()
+            mainViewModel.isLoading.observe(viewLifecycleOwner) {
+                showLoading(it)
+            }
         }
     }
 

@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.search.SearchBar
 import com.google.android.material.search.SearchView
+import com.muflidevs.dicodingevent.network.Network
 import com.muflidevs.dicodingevent.R
 import com.muflidevs.dicodingevent.data.response.DetailData
 import com.muflidevs.dicodingevent.databinding.FragmentFinishedBinding
@@ -48,9 +49,20 @@ class FinishedFragment : Fragment(), View.OnClickListener {
         vertical.isLoading.observe(viewLifecycleOwner) {
             showLoading(it)
         }
+        if(!Network.isNetworkAvailable(context)) {
+            Toast.makeText(context,"No internet connection. Please turn on your network", Toast.LENGTH_LONG).show()
+            vertical.isLoading.observe(viewLifecycleOwner) {
+                showLoading(it)
+            }
+        }
+
     }
 
+    private fun searchFinishedEvents(query : String?) {
+        val vertical = ViewModelProvider(this,ViewModelProvider.NewInstanceFactory())[MainViewModelFinish::class.java]
 
+        vertical.searchFinishedEvents(0,20,query)
+    }
     private fun setEventDataVertical(event : List<DetailData>) {
         rvVerticalAdapter.submitList(event)
     }
@@ -76,10 +88,17 @@ class FinishedFragment : Fragment(), View.OnClickListener {
                    searchView.setupWithSearchBar(searchBar)
                    searchView
                        .editText
-                       .setOnEditorActionListener { _, _, _ ->
-                           searchBar.setText(searchView.text)
+                       .setOnEditorActionListener{_,_,_ ->
+                           val query = searcView.text.toString()
+                           searchBar.setText(query)
                            searchView.hide()
-                           Toast.makeText(this@FinishedFragment.context, searchView.text,Toast.LENGTH_SHORT).show()
+
+                           if(query.isNotEmpty()) {
+                               searchFinishedEvents(query)
+                           }
+                           else {
+                               searchFinishedEvents(null)
+                           }
                            false
                        }
                }
@@ -89,5 +108,4 @@ class FinishedFragment : Fragment(), View.OnClickListener {
     private fun showLoading(isLoading : Boolean) {
         binding.progressBar.visibility = if(isLoading) VISIBLE else View.GONE
     }
-
 }

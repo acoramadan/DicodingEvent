@@ -9,23 +9,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/rounded_header">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/poppins_extrabold"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:paddingTop="40dp"
+                android:layout_marginStart="25dp"
+                android:text="@string/dicoding_event" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fontFamily="@font/poppins_bold"
-        android:textSize="25sp"
-        android:paddingTop="40dp"
-        android:layout_marginStart="25dp"
-        android:text="@string/dicoding_event" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_light"
-        android:textSize="15sp"
-        android:text="@string/upcoming_events"
-        android:layout_marginStart="25dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:text="@string/upcoming_events"
+                android:layout_marginStart="25dp"/>
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/vertical_only"

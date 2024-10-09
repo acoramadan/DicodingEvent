@@ -7,8 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.muflidevs.dicodingevent.network.Network
 import com.muflidevs.dicodingevent.data.response.DetailData
 import com.muflidevs.dicodingevent.databinding.FragmentUpcomingFragmentsBinding
 import com.muflidevs.dicodingevent.ui.DetailActivity
@@ -36,6 +38,12 @@ class UpcomingFragments : Fragment() {
         }
         mainViewVertical.isLoading.observe(viewLifecycleOwner) {
             showLoading(it)
+        }
+        if(!Network.isNetworkAvailable(context)) {
+            Toast.makeText(context,"No internet connection. Please turn on your network", Toast.LENGTH_LONG).show()
+            mainViewVertical.isLoading.observe(viewLifecycleOwner) {
+                showLoading(it)
+            }
         }
     }
     private fun setEventDataVertical(event : List<DetailData>) {

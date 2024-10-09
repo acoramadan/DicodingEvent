@@ -8,24 +8,34 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/second">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fontFamily="@font/poppins_bold"
-            android:textSize="25sp"
-            android:paddingTop="40dp"
-            android:layout_marginStart="25dp"
-            android:text="@string/dicoding_event" />
-
-        <TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_light"
-            android:textSize="15sp"
-            android:text="@string/upcoming_events"
-            android:layout_marginStart="25dp"/>
+            android:orientation="vertical"
+            android:background="@drawable/rounded_header">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/poppins_extrabold"
+                android:textSize="25sp"
+                android:textColor="@color/white"
+                android:paddingTop="40dp"
+                android:layout_marginStart="25dp"
+                android:text="@string/dicoding_event" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:text="@string/upcoming_events"
+                android:layout_marginStart="25dp"/>
+        </LinearLayout>
+
         <ProgressBar
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyle"
@@ -40,6 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="2dp"
+            android:background="@drawable/horizontal_shape"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="20dp"/>
     </LinearLayout>
@@ -47,18 +58,20 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="300dp"
-        android:orientation="vertical">
-
+        android:layout_marginTop="320dp"
+        android:orientation="vertical"
+        android:background="@drawable/second_border_shape">
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="25dp"
             android:text="@string/finished_events"
-            android:layout_marginTop="30dp"
-            android:layout_marginStart="25dp"
-            android:fontFamily="@font/poppins_light"
-            android:textSize="15sp"
-            />
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/border_shape"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="15sp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/vertical_only"
