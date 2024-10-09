@@ -11,22 +11,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fontFamily="@font/poppins_bold"
-            android:textSize="25sp"
-            android:paddingTop="40dp"
-            android:layout_marginStart="25dp"
-            android:text="@string/dicoding_event" />
-        <TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_light"
-            android:textSize="15sp"
-            android:text="@string/finished"
-            android:layout_marginStart="25dp"/>
+            android:background="@drawable/rounded_header"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/poppins_extrabold"
+                android:textSize="25sp"
+                android:paddingTop="40dp"
+                android:layout_marginStart="25dp"
+                android:textColor="@color/white"
+                android:text="@string/dicoding_event" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:text="@string/finished_events"
+                android:layout_marginStart="25dp"/>
+        </LinearLayout>
         <ProgressBar
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyle"
@@ -52,6 +59,7 @@
             android:id="@+id/vertical_only"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingBottom="90dp"
             android:paddingTop="2dp"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="20dp"/>

@@ -28,7 +28,7 @@ class MainViewModel : ViewModel() {
     }
     private fun findEventHorizontal() {
         _isLoading.value = true
-        val client = ApiConfig.getApiService().getEvents(active = 1)
+        val client = ApiConfig.getApiService().getEvents(1, 5)
         client.enqueue(object : Callback<EventsResponse> {
             override fun onResponse(
                 call : Call<EventsResponse>,

@@ -27,9 +27,27 @@ class MainViewModelFinish : ViewModel() {
 
     }
 
+    fun searchFinishedEvents(active : Int,limit : Int, query : String?) {
+        _isLoading.value = true
+
+        ApiConfig.getApiService().getEvents(active = active,limit = limit,query = query)
+            .enqueue(object : Callback<EventsResponse> {
+                override fun onResponse(call: Call<EventsResponse>, response: Response<EventsResponse>) {
+                    _isLoading.value = false
+
+                    if(response.isSuccessful) {
+                        _listEvents.value = response.body()?.data
+                    }
+                }
+
+                override fun onFailure(call: Call<EventsResponse>, response: Throwable) {
+                    _isLoading.value = false
+                }
+            })
+    }
     private fun findEventVertical() {
         _isLoading.value = true
-        val client = ApiConfig.getApiService().getEvents(active = 0)
+        val client = ApiConfig.getApiService().getEvents(active = 0, limit = 5)
         client.enqueue(object : Callback<EventsResponse> {
             override fun onResponse(
                 call: Call<EventsResponse>,

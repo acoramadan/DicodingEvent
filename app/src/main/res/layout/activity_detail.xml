@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/second"
     tools:context=".ui.DetailActivity">
 
     <TextView
@@ -25,13 +29,16 @@
         android:layout_marginBottom="8dp"
         android:padding="16dp"
         android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/second">
 
         <ImageView
             android:id="@+id/image"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            tools:src="@tools:sample/avatars" />
+            android:contentDescription="@string/gambar"
+            tools:src="@tools:sample/avatars"
+            android:background="@drawable/border_shape"/>
 
         <TextView
             android:id="@+id/name"
@@ -95,6 +102,49 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:padding="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="15sp"
+                android:text="@string/registrant"/>
+
+            <TextView
+                android:id="@+id/registrant"
+                android:layout_width="78dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:textSize="15sp"/>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:padding="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="15sp"
+                android:text="@string/category"/>
+
+            <TextView
+                android:id="@+id/category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:textSize="15sp"/>
+
+        </LinearLayout>
 
         <TextView
             android:padding="3dp"
@@ -108,7 +158,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins"/>
-
     </LinearLayout>
 
     <Button
@@ -119,8 +168,10 @@
         android:layout_height="60dp"
         android:layout_gravity="center|bottom"
         android:text="@string/daftar"
+        app:backgroundTint = "@color/primary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.889"
         tools:layout_editor_absoluteX="0dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
