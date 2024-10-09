@@ -21,6 +21,7 @@ class UpcomingFragments : Fragment() {
     private lateinit var rvVerticalAdapter: VerticalListAdapter
     private lateinit var binding : FragmentUpcomingFragmentsBinding
 
+    //createview
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
