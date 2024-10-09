@@ -1,4 +1,4 @@
-package com.muflidevs.dicodingevent.network
+package com.muflidevs.dicodingevent.networking
 
 import android.content.Context
 import android.net.ConnectivityManager

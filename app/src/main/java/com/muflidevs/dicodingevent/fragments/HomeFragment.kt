@@ -10,12 +10,11 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.muflidevs.dicodingevent.network.Network
 import com.muflidevs.dicodingevent.data.response.DetailData
 import com.muflidevs.dicodingevent.databinding.FragmentHomeBinding
+import com.muflidevs.dicodingevent.networking.Network
 import com.muflidevs.dicodingevent.ui.DetailActivity
 import com.muflidevs.dicodingevent.ui.viewmodel.MainViewModel
-import com.muflidevs.dicodingevent.ui.viewmodel.MainViewModelFinish
 import com.muflidevs.dicodingevent.ui.adapter.HorizontalListAdapter
 import com.muflidevs.dicodingevent.ui.adapter.SpaceItemDecoration
 import com.muflidevs.dicodingevent.ui.adapter.VerticalListAdapter
@@ -42,13 +41,12 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         val mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[MainViewModel::class.java]
-        val mainViewVertical = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[MainViewModelFinish::class.java]
 
         mainViewModel.listEvent.observe(viewLifecycleOwner) { value ->
             setEventData(value)
 
         }
-        mainViewVertical.listEvent.observe(viewLifecycleOwner) { value ->
+        mainViewModel.listEventVertical.observe(viewLifecycleOwner) { value ->
             setEventDataVertical(value)
         }
         mainViewModel.isLoading.observe(viewLifecycleOwner) {

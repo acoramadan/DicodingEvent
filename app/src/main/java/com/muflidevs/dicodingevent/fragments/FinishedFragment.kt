@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.search.SearchBar
 import com.google.android.material.search.SearchView
-import com.muflidevs.dicodingevent.network.Network
+import com.muflidevs.dicodingevent.networking.Network
 import com.muflidevs.dicodingevent.R
 import com.muflidevs.dicodingevent.data.response.DetailData
 import com.muflidevs.dicodingevent.databinding.FragmentFinishedBinding

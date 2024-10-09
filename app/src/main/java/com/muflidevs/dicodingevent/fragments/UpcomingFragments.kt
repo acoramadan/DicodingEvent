@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.muflidevs.dicodingevent.network.Network
+import com.muflidevs.dicodingevent.networking.Network
 import com.muflidevs.dicodingevent.data.response.DetailData
 import com.muflidevs.dicodingevent.databinding.FragmentUpcomingFragmentsBinding
 import com.muflidevs.dicodingevent.ui.DetailActivity

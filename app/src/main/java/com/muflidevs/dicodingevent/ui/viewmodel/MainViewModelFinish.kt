@@ -47,7 +47,7 @@ class MainViewModelFinish : ViewModel() {
     }
     private fun findEventVertical() {
         _isLoading.value = true
-        val client = ApiConfig.getApiService().getEvents(active = 0, limit = 5)
+        val client = ApiConfig.getApiService().getEvents(active = 0)
         client.enqueue(object : Callback<EventsResponse> {
             override fun onResponse(
                 call: Call<EventsResponse>,
