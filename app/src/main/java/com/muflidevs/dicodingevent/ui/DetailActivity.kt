@@ -38,11 +38,10 @@ class DetailActivity : AppCompatActivity() {
     private fun displayEventDetails(detailData: DetailData) {
         binding.name.text = detailData.name
         binding.ownerName.text = detailData.ownerName
-        binding.quota.text = detailData.quota.toString()
+        binding.quota.text = (detailData.quota - detailData.registrans).toString()
         binding.beginTime.text = detailData.beginTime
         binding.category.text = detailData.category
         binding.description.text = Html.fromHtml(detailData.description,Html.FROM_HTML_MODE_LEGACY)
-        binding.registrant.text = detailData.registrans.toString()
         Glide.with(this)
             .load(detailData.imageLogo)
             .into(binding.image)

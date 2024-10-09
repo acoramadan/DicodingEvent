@@ -55,7 +55,7 @@
     <string name="waktu_mulai">Waktu Mulai : </string>
     <string name="kuota">Kuota :</string>
     <string name="description">description</string>
-    <string name="registrant">Registrant :</string>
+    <string name="registrant">Sisa kuota : </string>
     <string name="category">Category :</string>
     <string name="gambar">gambar</string>
 </resources>

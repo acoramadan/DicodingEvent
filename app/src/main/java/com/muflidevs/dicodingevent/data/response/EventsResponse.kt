@@ -45,10 +45,10 @@ data class DetailData (
     val cityName : String? = null,
 
     @field : SerializedName("quota")
-    val quota : Int? = null,
+    val quota : Int,
 
     @field : SerializedName("registrants")
-    val registrans : Int? = null,
+    val registrans : Int,
 
     @field : SerializedName("beginTime")
     val beginTime : String? = null,
