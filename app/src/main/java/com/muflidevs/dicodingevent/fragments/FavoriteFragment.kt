@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.muflidevs.dicodingevent.databinding.FragmentFavoriteBinding
 import com.muflidevs.dicodingevent.ui.DetailActivity
 import com.muflidevs.dicodingevent.ui.adapter.FavoriteListAdapter
+import com.muflidevs.dicodingevent.ui.adapter.SpaceItemDecoration
 import com.muflidevs.dicodingevent.ui.viewmodel.MainViewModelFavorite
 import com.muflidevs.dicodingevent.ui.viewmodel.ViewModelFactory
 
@@ -34,18 +35,19 @@ class FavoriteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = obtainViewMOdel(this)
+        viewModel = obtainViewModel()
 
         adapter = FavoriteListAdapter(requireContext()) { detailData ->
             val intent = Intent(requireContext(),DetailActivity::class.java)
-            intent.putExtra(DetailActivity.EXTRA_EVENT,detailData)
+            intent.putExtra("EXTRA_DETAIL",detailData)
             startActivity(intent)
         }
 
         binding.rvFavorite.adapter = adapter
         binding.rvFavorite.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvFavorite.addItemDecoration(SpaceItemDecoration(24))
 
-        viewModel.getAllEvents().observe(viewLifecycleOwner){events ->
+        this.viewModel.getAllEvents().observe(viewLifecycleOwner){ events ->
             if(events != null) adapter.submitList(events)
         }
     }
@@ -55,9 +57,9 @@ class FavoriteFragment : Fragment() {
         _binding = null
     }
 
-    private fun obtainViewMOdel(fragment : Fragment) : MainViewModelFavorite {
+    private fun obtainViewModel() : MainViewModelFavorite {
         val factory = ViewModelFactory.getInstance(requireActivity().application)
-        return ViewModelProvider(fragment,factory)[MainViewModelFavorite::class.java]
+        return ViewModelProvider(this,factory)[MainViewModelFavorite::class.java]
     }
 
 }

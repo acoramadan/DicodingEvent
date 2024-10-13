@@ -17,5 +17,6 @@ class EventDiffCallback(private val oldEventList : List<DetailData>,
         val oldEvent = oldEventList[oldItemPosition]
         val newEvent = newEventList[oldItemPosition]
         return oldEvent.name == newEvent.name && oldEvent.description == newEvent.description
+
     }
 }

@@ -5,4 +5,5 @@
     <color name="primary">#243642</color>
     <color name="second">#F5F5F5</color>
     <color name="third">#243642</color>
+    <color name="favorite">#48CFCB</color>
 </resources>

@@ -16,6 +16,6 @@ interface EventDAO {
     @Delete
     fun delete(detail : DetailData)
 
-    @Query("SELECT * FROM detaildata ORDER BY id ASC")
+    @Query("SELECT * FROM detaildata")
     fun getAllEvents() : LiveData<List<DetailData>>
 }
