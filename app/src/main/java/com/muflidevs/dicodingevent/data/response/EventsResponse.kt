@@ -1,6 +1,9 @@
 package com.muflidevs.dicodingevent.data.response
 
 import android.os.Parcelable
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
@@ -14,49 +17,63 @@ data class EventsResponse (
     @field:SerializedName("listEvents")
     val data : List<DetailData>
 )
-
+@Entity
 @Parcelize
-data class DetailData (
-    @field : SerializedName("id")
-    val id : Int? = null,
+data class DetailData(
+    @PrimaryKey
+    @field:SerializedName("id")
+    var id: Int? = null,
 
-    @field : SerializedName("name")
-    val name : String? = null,
+    @ColumnInfo(name = "name")
+    @field:SerializedName("name")
+    var name: String? = null,
 
-    @field : SerializedName("summary")
-    val summary : String? = null,
+    @ColumnInfo(name = "summary")
+    @field:SerializedName("summary")
+    var summary: String? = null,
 
-    @field : SerializedName("description")
-    val description : String? = null,
+    @ColumnInfo(name = "description")
+    @field:SerializedName("description")
+    var description: String? = null,
 
-    @field : SerializedName("imageLogo")
-    val imageLogo : String? = null,
+    @ColumnInfo(name = "image_logo")
+    @field:SerializedName("imageLogo")
+    var imageLogo: String? = null,
 
-    @field : SerializedName("mediaCover")
-    val mediaCover : String? = null,
+    @ColumnInfo(name = "media_cover")
+    @field:SerializedName("mediaCover")
+    var mediaCover: String? = null,
 
-    @field: SerializedName("category")
-    val category : String? = null,
+    @ColumnInfo(name = "category")
+    @field:SerializedName("category")
+    var category: String? = null,
 
-    @field : SerializedName("ownerName")
-    val ownerName : String? = null,
+    @ColumnInfo(name = "owner_name")
+    @field:SerializedName("ownerName")
+    var ownerName: String? = null,
 
-    @field : SerializedName("cityName")
-    val cityName : String? = null,
+    @ColumnInfo(name = "city_name")
+    @field:SerializedName("cityName")
+    var cityName: String? = null,
 
-    @field : SerializedName("quota")
-    val quota : Int,
+    @ColumnInfo(name = "quota")
+    @field:SerializedName("quota")
+    var quota: Int = 0,
 
-    @field : SerializedName("registrants")
-    val registrans : Int,
+    @ColumnInfo(name = "registrants")
+    @field:SerializedName("registrants")
+    var registrants: Int = 0,
 
-    @field : SerializedName("beginTime")
-    val beginTime : String? = null,
+    @ColumnInfo(name = "begin_time")
+    @field:SerializedName("beginTime")
+    var beginTime: String? = null,
 
-    @field : SerializedName("endTime")
-    val endTime : String? = null,
+    @ColumnInfo(name = "end_time")
+    @field:SerializedName("endTime")
+    var endTime: String? = null,
 
-    @field: SerializedName("link")
-    val link : String? = null,
+    @ColumnInfo(name = "link")
+    @field:SerializedName("link")
+    var link: String? = null
 ) : Parcelable
 

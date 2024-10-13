@@ -58,4 +58,7 @@
     <string name="registrant">Sisa kuota : </string>
     <string name="category">Category :</string>
     <string name="gambar">gambar</string>
+    <string name="notification">notification</string>
+    <string name="favorite">Favorite</string>
+    <string name="favorite_events">Favorite Events</string>
 </resources>

@@ -12,37 +12,38 @@ import com.muflidevs.dicodingevent.data.response.DetailData
 import com.muflidevs.dicodingevent.databinding.ItemHorizontalBinding
 import com.muflidevs.dicodingevent.ui.DetailActivity
 
-class HorizontalListAdapter(private val context : Context, private val onItemClicked : (DetailData) -> Unit) : ListAdapter<DetailData,
-        HorizontalListAdapter.MyViewHolder>(DIFF_CALLBACK) {
+class FavoriteListAdapter(private val context: Context, private val onItemClicked : (DetailData) -> Unit) : ListAdapter<DetailData,FavoriteListAdapter.FavoriteViewHolder>(
+    DIFF_CALLBACK) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+    override fun onCreateViewHolder(parent : ViewGroup,viewType : Int) :FavoriteViewHolder {
         val binding = ItemHorizontalBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-        return MyViewHolder(binding)
+        return FavoriteViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder : MyViewHolder, position : Int) {
+    override fun onBindViewHolder(holder: FavoriteViewHolder, position: Int) {
         val detailData = getItem(position)
-        val intent = Intent(context,DetailActivity::class.java)
-        intent.putExtra("EXTRA_ID",position)
-        holder.bind(detailData,onItemClicked)
+        holder.bind(detailData)
     }
-    inner class MyViewHolder(private val binding : ItemHorizontalBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(detail : DetailData,onItemClicked: (DetailData) -> Unit) {
-           Glide.with(context)
-               .load(detail.imageLogo)
-               .into(binding.headerImage)
-            binding.title.text = detail.name
-            binding.root.setOnClickListener{
-                onItemClicked(detail)
+    inner class FavoriteViewHolder(private val binding : ItemHorizontalBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(detailData: DetailData) {
+            binding.title.text = detailData.name
+            Glide.with(itemView.context)
+                .load(detailData.imageLogo)
+                .into(binding.headerImage)
+
+            itemView.setOnClickListener{
+                onItemClicked(detailData)
             }
         }
     }
-    companion object{
+
+    companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<DetailData>() {
             override fun areItemsTheSame(oldItem: DetailData, newItem: DetailData): Boolean {
                 return oldItem == newItem
             }
+
             override fun areContentsTheSame(oldItem: DetailData, newItem: DetailData): Boolean {
                 return oldItem == newItem
             }

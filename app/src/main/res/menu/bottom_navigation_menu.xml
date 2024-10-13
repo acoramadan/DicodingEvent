@@ -15,4 +15,9 @@
         android:enabled="true"
         android:icon="@drawable/event_finished"
         android:title="@string/finished"/>
+    <item
+        android:id="@+id/favorite"
+        android:enabled="true"
+        android:icon="@drawable/favorite"
+        android:title="@string/favorite"/>
 </menu>

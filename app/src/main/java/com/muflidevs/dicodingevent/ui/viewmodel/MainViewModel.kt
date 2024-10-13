@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import com.muflidevs.dicodingevent.data.response.DetailData
 import com.muflidevs.dicodingevent.data.response.EventsResponse
 import com.muflidevs.dicodingevent.data.retrofit.ApiConfig
-import com.muflidevs.dicodingevent.ui.viewmodel.MainViewModelFinish.Companion
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -75,4 +74,5 @@ class MainViewModel : ViewModel() {
             }
         })
     }
+
 }
