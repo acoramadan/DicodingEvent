@@ -8,13 +8,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 class ApiConfig {
     companion object {
         private const val BASE_URL = "https://event-api.dicoding.dev/"
-        fun getApiService() : ApiService {
+        fun getApiService(): ApiService {
             val loggingInterceptor =
                 HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
             val client = OkHttpClient.Builder()
                 .addInterceptor(loggingInterceptor).build()
-            val retrofit = Retrofit.Builder().baseUrl(BASE_URL).
-            addConverterFactory(GsonConverterFactory.create()).client(client).build()
+            val retrofit = Retrofit.Builder().baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create()).client(client).build()
 
             return retrofit.create(ApiService::class.java)
         }

@@ -27,7 +27,8 @@ class SettingsActivity : AppCompatActivity() {
         val switchNotif = findViewById<SwitchMaterial>(R.id.switch_notification)
 
         val pref = SettingPreferences.getInstance(application.dataStore)
-        mainSettingsModel = ViewModelProvider(this, ViewModelSettingsFactory(pref))[MainSettingsModel::class.java]
+        mainSettingsModel =
+            ViewModelProvider(this, ViewModelSettingsFactory(pref))[MainSettingsModel::class.java]
 
         mainSettingsModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
             if (isDarkModeActive) {
@@ -38,12 +39,11 @@ class SettingsActivity : AppCompatActivity() {
                 switchTheme.isChecked = false
             }
         }
-        mainSettingsModel.getNotificationSettings().observe(this) {isNotificationActive: Boolean ->
-            if(isNotificationActive) {
+        mainSettingsModel.getNotificationSettings().observe(this) { isNotificationActive: Boolean ->
+            if (isNotificationActive) {
                 startPeriodicEventWorker()
                 switchNotif.isChecked = true
-            }
-            else {
+            } else {
                 stopPeriodicEventWorker()
                 switchNotif.isChecked = false
             }

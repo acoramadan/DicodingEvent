@@ -8,7 +8,6 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/second"
     tools:context=".ui.DetailActivity">
 
     <TextView
@@ -17,6 +16,7 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         app:drawableStartCompat="@drawable/back"
+        app:drawableTint="@color/primary"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"/>
 
@@ -55,10 +55,11 @@
         android:padding="16dp"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@id/image"
-        android:background="@color/second">
+        android:background="@color/white">
 
         <TextView
             android:id="@+id/name"
+            android:textColor="@color/primary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -68,6 +69,7 @@
 
         <TextView
             android:id="@+id/ownerName"
+            android:textColor="@color/primary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
@@ -78,6 +80,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:padding="3dp">
 
             <TextView
@@ -85,10 +88,12 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"
                 android:textSize="15sp"
+                android:textColor="@color/primary"
                 android:text="@string/waktu_mulai" />
 
             <TextView
                 android:id="@+id/beginTime"
+                android:textColor="@color/primary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
@@ -99,6 +104,7 @@
         <LinearLayout
             android:padding="3dp"
             android:layout_width="wrap_content"
+            android:background="@color/white"
             android:layout_height="wrap_content">
 
             <TextView
@@ -107,11 +113,13 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"
                 android:textSize="15sp"
+                android:textColor="@color/primary"
                 android:text="@string/registrant"/>
 
             <TextView
                 android:id="@+id/quota"
                 android:layout_width="78dp"
+                android:textColor="@color/primary"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
                 android:textSize="15sp"/>
@@ -121,19 +129,21 @@
 
         <LinearLayout
             android:padding="3dp"
+            android:background="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <TextView
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"
                 android:textSize="15sp"
+                android:textColor="@color/primary"
                 android:text="@string/category"/>
 
             <TextView
                 android:id="@+id/category"
+                android:textColor="@color/primary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
@@ -143,19 +153,20 @@
 
         <TextView
             android:padding="3dp"
+            android:textColor="@color/primary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_bold"
             android:text="@string/description" />
 
         <TextView
+            android:textColor="@color/primary"
             android:id="@+id/description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins"/>
 
     </LinearLayout>
-
 
     <Button
         android:id="@+id/filledButton"
@@ -165,6 +176,7 @@
         android:layout_height="60dp"
         android:layout_gravity="center|bottom"
         android:text="@string/daftar"
+        android:textColor="@color/white"
         app:backgroundTint = "@color/primary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"

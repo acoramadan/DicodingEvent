@@ -10,5 +10,5 @@ interface ApiService {
         @Query("active") active: Int = 1,
         @Query("limit") limit: Int = 40,
         @Query("q") query: String? = null
-    ):EventsResponse
+    ): EventsResponse
 }

@@ -9,7 +9,7 @@ import com.muflidevs.dicodingevent.data.database.local.repository.EventRepositor
 import com.muflidevs.dicodingevent.data.remote.response.DetailData
 import kotlinx.coroutines.launch
 
-class MainViewModelFavorite(application : Application) : ViewModel() {
+class MainViewModelFavorite(application: Application) : ViewModel() {
 
     private val mEventRepository = EventRepository(application)
 
@@ -19,6 +19,7 @@ class MainViewModelFavorite(application : Application) : ViewModel() {
             mEventRepository.insert(detailDataEntity)
         }
     }
+
     fun insert(detailData: DetailDataEntity) {
         viewModelScope.launch {
             val detailDataEntity = mEventRepository.mapRemoteToLocal(detailData)
@@ -32,11 +33,13 @@ class MainViewModelFavorite(application : Application) : ViewModel() {
             mEventRepository.delete(detailDataEntity)
         }
     }
+
     fun delete(detailData: DetailDataEntity) {
         viewModelScope.launch {
             val detailDataEntity = mEventRepository.mapRemoteToLocal(detailData)
             mEventRepository.delete(detailDataEntity)
         }
     }
+
     fun getAllEvents(): LiveData<List<DetailDataEntity>> = mEventRepository.getAllEvent()
 }

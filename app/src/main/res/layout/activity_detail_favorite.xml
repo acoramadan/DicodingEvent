@@ -8,7 +8,6 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/second"
         tools:context=".ui.DetailActivity">
 
         <TextView
@@ -16,6 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
+            app:drawableTint="@color/primary"
             app:drawableStartCompat="@drawable/back"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"/>
@@ -55,10 +55,11 @@
             android:padding="16dp"
             android:orientation="vertical"
             app:layout_constraintTop_toBottomOf="@id/image"
-            android:background="@color/second">
+            android:background="@color/white">
 
             <TextView
                 android:id="@+id/name"
+                android:textColor="@color/primary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -68,6 +69,7 @@
 
             <TextView
                 android:id="@+id/ownerName"
+                android:textColor="@color/primary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
@@ -85,10 +87,12 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_bold"
                     android:textSize="15sp"
+                    android:textColor="@color/primary"
                     android:text="@string/waktu_mulai" />
 
                 <TextView
                     android:id="@+id/beginTime"
+                    android:textColor="@color/primary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins"
@@ -107,6 +111,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_bold"
                     android:textSize="15sp"
+                    android:textColor="@color/primary"
                     android:text="@string/registrant"/>
 
                 <TextView
@@ -114,6 +119,7 @@
                     android:layout_width="78dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins"
+                    android:textColor="@color/primary"
                     android:textSize="15sp"/>
 
 
@@ -130,6 +136,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_bold"
                     android:textSize="15sp"
+                    android:textColor="@color/primary"
                     android:text="@string/category"/>
 
                 <TextView
@@ -137,6 +144,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins"
+                    android:textColor="@color/primary"
                     android:textSize="15sp"/>
 
             </LinearLayout>
@@ -146,12 +154,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/primary"
                 android:text="@string/description" />
 
             <TextView
                 android:id="@+id/description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/primary"
                 android:fontFamily="@font/poppins"/>
 
         </LinearLayout>
@@ -163,6 +173,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_height="60dp"
+            android:textColor="@color/white"
             android:layout_gravity="center|bottom"
             android:text="@string/daftar"
             app:backgroundTint = "@color/primary"

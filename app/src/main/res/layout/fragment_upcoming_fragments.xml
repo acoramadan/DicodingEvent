@@ -35,7 +35,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:padding="20dp"
-                    app:drawableEndCompat="@drawable/settings" />
+                    app:drawableEndCompat="@drawable/settings"
+                    app:drawableTint="@color/white"/>
 
             </LinearLayout>
 
@@ -59,6 +60,7 @@
             android:layout_marginEnd="20dp"/>
         <ProgressBar
             android:id="@+id/progressBar"
+            android:backgroundTint="@color/primary"
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

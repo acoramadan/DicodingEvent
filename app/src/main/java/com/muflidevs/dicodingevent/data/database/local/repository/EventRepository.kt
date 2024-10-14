@@ -10,7 +10,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class EventRepository(application: Application) {
-    private val mEventDao : EventDAO
+    private val mEventDao: EventDAO
+
     init {
         val db = EventRoomDatabase.getDatabase(application)
         mEventDao = db.eventDAO()
@@ -30,7 +31,7 @@ class EventRepository(application: Application) {
         }
     }
 
-    fun mapRemoteToLocal(detailData : DetailData) : DetailDataEntity {
+    fun mapRemoteToLocal(detailData: DetailData): DetailDataEntity {
         return DetailDataEntity(
             id = detailData.id,
             name = detailData.name,
@@ -46,7 +47,8 @@ class EventRepository(application: Application) {
             link = detailData.link
         )
     }
-    fun mapRemoteToLocal(detailData : DetailDataEntity) : DetailDataEntity {
+
+    fun mapRemoteToLocal(detailData: DetailDataEntity): DetailDataEntity {
         return DetailDataEntity(
             id = detailData.id,
             name = detailData.name,

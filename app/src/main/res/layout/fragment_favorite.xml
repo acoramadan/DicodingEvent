@@ -32,7 +32,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:padding="20dp"
-                app:drawableEndCompat="@drawable/settings" />
+                app:drawableEndCompat="@drawable/settings"
+                app:drawableTint="@color/white" />
 
         </LinearLayout>
         <TextView

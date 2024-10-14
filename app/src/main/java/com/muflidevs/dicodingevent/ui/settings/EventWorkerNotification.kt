@@ -21,7 +21,8 @@ import com.muflidevs.dicodingevent.ui.DetailActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class EventWorkerNotification(ctx: Context, params: WorkerParameters) : CoroutineWorker(ctx, params) {
+class EventWorkerNotification(ctx: Context, params: WorkerParameters) :
+    CoroutineWorker(ctx, params) {
 
     override suspend fun doWork(): Result {
         return try {
@@ -41,8 +42,7 @@ class EventWorkerNotification(ctx: Context, params: WorkerParameters) : Coroutin
                 if (eventList.isNotEmpty()) {
                     val event = eventList[0]
                     showNotification(context, event)
-                }
-                else{
+                } else {
                     Log.e("fetchAndNotify", "Error mengambil event data")
                 }
             } catch (e: Exception) {
@@ -51,7 +51,7 @@ class EventWorkerNotification(ctx: Context, params: WorkerParameters) : Coroutin
         }
     }
 
-    private fun showNotification(context: Context,detailData : DetailData) {
+    private fun showNotification(context: Context, detailData: DetailData) {
         val channelId = "event_channel"
         val notificationId = 1
 
@@ -79,7 +79,7 @@ class EventWorkerNotification(ctx: Context, params: WorkerParameters) : Coroutin
         val notificationBuilder = NotificationCompat.Builder(context, channelId)
             .setContentTitle(detailData.ownerName)
             .setContentText(detailData.name)
-            .setSmallIcon(R.drawable.dicoding)
+            .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
