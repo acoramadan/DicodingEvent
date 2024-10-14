@@ -18,7 +18,6 @@
         app:itemTextColor="@color/white"
         app:itemIconTint="@color/white"
         app:menu="@menu/bottom_navigation_menu" />
-
 </FrameLayout>
 </LinearLayout>
 

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.muflidevs.dicodingevent.data.response.DetailData
+import com.muflidevs.dicodingevent.data.remote.response.DetailData
 import com.muflidevs.dicodingevent.databinding.ItemVerticalBinding
 
 class VerticalListAdapter(private val context : Context, private val onItemClicked: (DetailData) -> Unit) : ListAdapter<DetailData,
@@ -47,7 +47,7 @@ class VerticalListAdapter(private val context : Context, private val onItemClick
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<DetailData>() {
             override fun areContentsTheSame(oldItem: DetailData, newItem: DetailData): Boolean {
                 return oldItem == newItem
-            }
+            }   
 
             override fun areItemsTheSame(oldItem: DetailData, newItem: DetailData): Boolean {
                 return oldItem == newItem
@@ -55,3 +55,5 @@ class VerticalListAdapter(private val context : Context, private val onItemClick
         }
     }
 }
+
+

@@ -11,9 +11,11 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.muflidevs.dicodingevent.networking.Network
-import com.muflidevs.dicodingevent.data.response.DetailData
+import com.muflidevs.dicodingevent.data.remote.response.DetailData
 import com.muflidevs.dicodingevent.databinding.FragmentUpcomingFragmentsBinding
 import com.muflidevs.dicodingevent.ui.DetailActivity
+import com.muflidevs.dicodingevent.ui.settings.SettingsActivity
+import com.muflidevs.dicodingevent.ui.adapter.SpaceItemDecoration
 import com.muflidevs.dicodingevent.ui.viewmodel.MainViewModel
 import com.muflidevs.dicodingevent.ui.adapter.VerticalListAdapter
 
@@ -46,6 +48,10 @@ class UpcomingFragments : Fragment() {
                 showLoading(it)
             }
         }
+        binding.settings.setOnClickListener{
+            val intent = Intent(requireContext(), SettingsActivity::class.java)
+            startActivity(intent)
+        }
     }
     private fun setEventDataVertical(event : List<DetailData>) {
         rvVerticalAdapter.submitList(event)
@@ -60,6 +66,7 @@ class UpcomingFragments : Fragment() {
         binding.verticalOnly.layoutManager = LinearLayoutManager(context,
             LinearLayoutManager.VERTICAL,false)
         binding.verticalOnly.adapter = rvVerticalAdapter
+        binding.verticalOnly.addItemDecoration(SpaceItemDecoration(24))
     }
 
     private fun showLoading(isLoading : Boolean) {

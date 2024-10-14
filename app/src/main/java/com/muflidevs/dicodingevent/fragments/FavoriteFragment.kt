@@ -10,6 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.muflidevs.dicodingevent.databinding.FragmentFavoriteBinding
 import com.muflidevs.dicodingevent.ui.DetailActivity
+import com.muflidevs.dicodingevent.ui.DetailFavoriteActivity
+import com.muflidevs.dicodingevent.ui.settings.SettingsActivity
 import com.muflidevs.dicodingevent.ui.adapter.FavoriteListAdapter
 import com.muflidevs.dicodingevent.ui.adapter.SpaceItemDecoration
 import com.muflidevs.dicodingevent.ui.viewmodel.MainViewModelFavorite
@@ -37,9 +39,9 @@ class FavoriteFragment : Fragment() {
 
         viewModel = obtainViewModel()
 
-        adapter = FavoriteListAdapter(requireContext()) { detailData ->
-            val intent = Intent(requireContext(),DetailActivity::class.java)
-            intent.putExtra("EXTRA_DETAIL",detailData)
+        adapter = FavoriteListAdapter { detailDataEntity ->
+            val intent = Intent(requireContext(),DetailFavoriteActivity::class.java)
+            intent.putExtra("EXTRA_ENTITY_DETAIL",detailDataEntity)
             startActivity(intent)
         }
 
@@ -49,6 +51,11 @@ class FavoriteFragment : Fragment() {
 
         this.viewModel.getAllEvents().observe(viewLifecycleOwner){ events ->
             if(events != null) adapter.submitList(events)
+        }
+
+        binding.settings.setOnClickListener{
+            val intent = Intent(requireContext(), SettingsActivity::class.java)
+            startActivity(intent)
         }
     }
 

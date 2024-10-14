@@ -61,4 +61,6 @@
     <string name="notification">notification</string>
     <string name="favorite">Favorite</string>
     <string name="favorite_events">Favorite Events</string>
+    <string name="settings">Settings</string>
+    <string name="dark_mode">Dark Mode\n</string>
 </resources>

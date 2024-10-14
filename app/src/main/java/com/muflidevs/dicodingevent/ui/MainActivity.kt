@@ -3,7 +3,9 @@ package com.muflidevs.dicodingevent.ui
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.replace
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.navigation.NavigationBarView
 import com.muflidevs.dicodingevent.R
 import com.muflidevs.dicodingevent.databinding.ActivityMainBinding
@@ -11,6 +13,10 @@ import com.muflidevs.dicodingevent.fragments.FavoriteFragment
 import com.muflidevs.dicodingevent.fragments.FinishedFragment
 import com.muflidevs.dicodingevent.fragments.HomeFragment
 import com.muflidevs.dicodingevent.fragments.UpcomingFragments
+import com.muflidevs.dicodingevent.ui.settings.SettingPreferences
+import com.muflidevs.dicodingevent.ui.settings.dataStore
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity(){
     private lateinit var binding : ActivityMainBinding
@@ -22,6 +28,17 @@ class MainActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
+
+        val pref = SettingPreferences.getInstance(dataStore)
+
+        lifecycleScope.launch {
+            val isDarkModeActive = pref.getThemeSetting().first()
+            if(isDarkModeActive) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
         setContentView(binding.root)
         navigationBar = binding.bottomNavigation
         navBarClick()

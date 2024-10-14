@@ -1,4 +1,4 @@
-package com.muflidevs.dicodingevent.data.retrofit
+package com.muflidevs.dicodingevent.data.remote.retrofit
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

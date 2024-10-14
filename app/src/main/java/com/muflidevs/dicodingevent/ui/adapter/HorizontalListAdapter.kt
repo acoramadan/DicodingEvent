@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.muflidevs.dicodingevent.data.response.DetailData
+import com.muflidevs.dicodingevent.data.remote.response.DetailData
 import com.muflidevs.dicodingevent.databinding.ItemHorizontalBinding
 import com.muflidevs.dicodingevent.ui.DetailActivity
 
@@ -28,7 +28,7 @@ class HorizontalListAdapter(private val context : Context, private val onItemCli
     }
     inner class MyViewHolder(private val binding : ItemHorizontalBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(detail : DetailData,onItemClicked: (DetailData) -> Unit) {
+        fun bind(detail : DetailData, onItemClicked: (DetailData) -> Unit) {
            Glide.with(context)
                .load(detail.imageLogo)
                .into(binding.headerImage)

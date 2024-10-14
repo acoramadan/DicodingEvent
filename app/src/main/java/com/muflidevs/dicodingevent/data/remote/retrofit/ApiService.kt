@@ -1,6 +1,6 @@
-package com.muflidevs.dicodingevent.data.retrofit
+package com.muflidevs.dicodingevent.data.remote.retrofit
 
-import com.muflidevs.dicodingevent.data.response.EventsResponse
+import com.muflidevs.dicodingevent.data.remote.response.EventsResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

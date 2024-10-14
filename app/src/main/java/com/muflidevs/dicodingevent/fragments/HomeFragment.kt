@@ -10,10 +10,11 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.muflidevs.dicodingevent.data.response.DetailData
+import com.muflidevs.dicodingevent.data.remote.response.DetailData
 import com.muflidevs.dicodingevent.databinding.FragmentHomeBinding
 import com.muflidevs.dicodingevent.networking.Network
 import com.muflidevs.dicodingevent.ui.DetailActivity
+import com.muflidevs.dicodingevent.ui.settings.SettingsActivity
 import com.muflidevs.dicodingevent.ui.viewmodel.MainViewModel
 import com.muflidevs.dicodingevent.ui.adapter.HorizontalListAdapter
 import com.muflidevs.dicodingevent.ui.adapter.SpaceItemDecoration
@@ -57,6 +58,10 @@ class HomeFragment : Fragment() {
             mainViewModel.isLoading.observe(viewLifecycleOwner) {
                 showLoading(it)
             }
+        }
+        binding.settings.setOnClickListener{
+            val intent = Intent(requireContext(), SettingsActivity::class.java)
+            startActivity(intent)
         }
     }
 
