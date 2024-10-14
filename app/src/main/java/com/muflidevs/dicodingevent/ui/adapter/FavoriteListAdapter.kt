@@ -1,6 +1,5 @@
 package com.muflidevs.dicodingevent.ui.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -8,7 +7,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.muflidevs.dicodingevent.data.database.local.entity.DetailDataEntity
-import com.muflidevs.dicodingevent.data.remote.response.DetailData
 import com.muflidevs.dicodingevent.databinding.ItemVerticalBinding
 
 class FavoriteListAdapter(private val onItemClicked: (DetailDataEntity) -> Unit) :

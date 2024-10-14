@@ -59,6 +59,10 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.livedata.ktx)
 
+    //workmanager
+    implementation(libs.androidx.work.runtime.ktx)
+
+    implementation(libs.androidx.core)
     implementation(libs.androidx.cardview)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

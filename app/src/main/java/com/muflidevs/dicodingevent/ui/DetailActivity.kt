@@ -5,14 +5,12 @@ import android.content.res.ColorStateList
 import android.net.Uri
 import android.os.Bundle
 import android.text.Html
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.muflidevs.dicodingevent.R
-import com.muflidevs.dicodingevent.data.database.local.entity.DetailDataEntity
 import com.muflidevs.dicodingevent.data.remote.response.DetailData
 import com.muflidevs.dicodingevent.databinding.ActivityDetailBinding
 import com.muflidevs.dicodingevent.ui.viewmodel.MainViewModelFavorite
@@ -75,8 +73,7 @@ class DetailActivity : AppCompatActivity() {
 
     private fun deleteFavoriteEvent() {
         eventInsertViewModel.delete(detailData)
-        Toast.makeText(this, "Event berhasil dihapus dari daftar favorit", Toast.LENGTH_SHORT)
-            .show()
+        showToast("Event berhasil dihapus dari daftar favorit")
     }
 
     private fun saveFavoriteEvent() {

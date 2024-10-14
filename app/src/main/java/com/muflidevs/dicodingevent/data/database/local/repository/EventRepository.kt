@@ -8,8 +8,6 @@ import com.muflidevs.dicodingevent.data.database.local.room.EventRoomDatabase
 import com.muflidevs.dicodingevent.data.remote.response.DetailData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
 
 class EventRepository(application: Application) {
     private val mEventDao : EventDAO

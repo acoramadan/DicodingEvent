@@ -6,13 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.muflidevs.dicodingevent.data.remote.response.DetailData
-import com.muflidevs.dicodingevent.data.remote.response.EventsResponse
 import com.muflidevs.dicodingevent.data.remote.retrofit.ApiConfig
-import com.muflidevs.dicodingevent.ui.viewmodel.MainViewModel.Companion
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+
 
 class MainViewModelFinish : ViewModel() {
 

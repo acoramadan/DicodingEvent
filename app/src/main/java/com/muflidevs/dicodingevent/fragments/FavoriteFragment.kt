@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.muflidevs.dicodingevent.databinding.FragmentFavoriteBinding
-import com.muflidevs.dicodingevent.ui.DetailActivity
 import com.muflidevs.dicodingevent.ui.DetailFavoriteActivity
 import com.muflidevs.dicodingevent.ui.settings.SettingsActivity
 import com.muflidevs.dicodingevent.ui.adapter.FavoriteListAdapter
