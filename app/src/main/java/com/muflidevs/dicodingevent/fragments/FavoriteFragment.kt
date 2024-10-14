@@ -19,18 +19,17 @@ import com.muflidevs.dicodingevent.ui.viewmodel.ViewModelFactory
 
 
 class FavoriteFragment : Fragment() {
-    private var _binding : FragmentFavoriteBinding? = null
-    private lateinit var viewModel : MainViewModelFavorite
-    private lateinit var adapter : FavoriteListAdapter
+    private var _binding: FragmentFavoriteBinding? = null
+    private lateinit var viewModel: MainViewModelFavorite
+    private lateinit var adapter: FavoriteListAdapter
     private val binding get() = _binding!!
-
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentFavoriteBinding.inflate(inflater,container,false)
+        _binding = FragmentFavoriteBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -40,8 +39,8 @@ class FavoriteFragment : Fragment() {
         viewModel = obtainViewModel()
 
         adapter = FavoriteListAdapter { detailDataEntity ->
-            val intent = Intent(requireContext(),DetailFavoriteActivity::class.java)
-            intent.putExtra("EXTRA_ENTITY_DETAIL",detailDataEntity)
+            val intent = Intent(requireContext(), DetailFavoriteActivity::class.java)
+            intent.putExtra("EXTRA_ENTITY_DETAIL", detailDataEntity)
             startActivity(intent)
         }
 
@@ -49,11 +48,11 @@ class FavoriteFragment : Fragment() {
         binding.rvFavorite.layoutManager = LinearLayoutManager(requireContext())
         binding.rvFavorite.addItemDecoration(SpaceItemDecoration(24))
 
-        this.viewModel.getAllEvents().observe(viewLifecycleOwner){ events ->
-            if(events != null) adapter.submitList(events)
+        this.viewModel.getAllEvents().observe(viewLifecycleOwner) { events ->
+            if (events != null) adapter.submitList(events)
         }
 
-        binding.settings.setOnClickListener{
+        binding.settings.setOnClickListener {
             val intent = Intent(requireContext(), SettingsActivity::class.java)
             startActivity(intent)
         }
@@ -64,9 +63,9 @@ class FavoriteFragment : Fragment() {
         _binding = null
     }
 
-    private fun obtainViewModel() : MainViewModelFavorite {
+    private fun obtainViewModel(): MainViewModelFavorite {
         val factory = ViewModelFactory.getInstance(requireActivity().application)
-        return ViewModelProvider(this,factory)[MainViewModelFavorite::class.java]
+        return ViewModelProvider(this, factory)[MainViewModelFavorite::class.java]
     }
 
 }

@@ -5,7 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.viewModelFactory
 
-class ViewModelFactory private constructor(private val mApplication: Application) : ViewModelProvider.NewInstanceFactory() {
+class ViewModelFactory private constructor(private val mApplication: Application) :
+    ViewModelProvider.NewInstanceFactory() {
 
     companion object {
         @Volatile
@@ -25,6 +26,7 @@ class ViewModelFactory private constructor(private val mApplication: Application
             modelClass.isAssignableFrom(MainViewModelFavorite::class.java) -> {
                 MainViewModelFavorite(mApplication) as T
             }
+
             else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
         }
     }

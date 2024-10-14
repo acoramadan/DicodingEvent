@@ -6,13 +6,13 @@ import com.muflidevs.dicodingevent.data.database.local.entity.DetailDataEntity
 import com.muflidevs.dicodingevent.data.database.local.room.EventDAO
 import com.muflidevs.dicodingevent.data.database.local.room.EventRoomDatabase
 import com.muflidevs.dicodingevent.data.remote.response.DetailData
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 class EventRepository(application: Application) {
     private val mEventDao : EventDAO
-    private val executorService : ExecutorService = Executors.newSingleThreadExecutor()
-
     init {
         val db = EventRoomDatabase.getDatabase(application)
         mEventDao = db.eventDAO()
@@ -20,16 +20,18 @@ class EventRepository(application: Application) {
 
     fun getAllEvent(): LiveData<List<DetailDataEntity>> = mEventDao.getAllEvents()
 
-    fun insert(detailData: DetailDataEntity) {
-        executorService.execute{mEventDao.insert(detailData)}
+    suspend fun insert(detailData: DetailDataEntity) {
+        withContext(Dispatchers.IO) {
+            mEventDao.insert(detailData)
+        }
     }
 
-    fun delete(detailData: DetailDataEntity) {
-        executorService.execute{mEventDao.delete(detailData)}
+    suspend fun delete(detailData: DetailDataEntity) {
+        withContext(Dispatchers.IO) {
+            mEventDao.delete(detailData)
+        }
     }
-    fun getEventById(id : Int) : LiveData<DetailDataEntity> {
-        return mEventDao.getEventById(id)
-    }
+
     fun mapRemoteToLocal(detailData : DetailData) : DetailDataEntity {
         return DetailDataEntity(
             id = detailData.id,

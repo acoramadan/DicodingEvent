@@ -24,15 +24,15 @@ import com.muflidevs.dicodingevent.ui.adapter.VerticalListAdapter
 
 
 class FinishedFragment : Fragment(), View.OnClickListener {
-    private lateinit var binding : FragmentFinishedBinding
+    private lateinit var binding: FragmentFinishedBinding
     private lateinit var searchBar: SearchBar
-    private lateinit var searcView : SearchView
-    private lateinit var rvVerticalAdapter : VerticalListAdapter
+    private lateinit var searcView: SearchView
+    private lateinit var rvVerticalAdapter: VerticalListAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentFinishedBinding.inflate(inflater,container,false)
+        binding = FragmentFinishedBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -43,15 +43,22 @@ class FinishedFragment : Fragment(), View.OnClickListener {
         searchBar = binding.searchBar
         searchBar.setOnClickListener(this)
         setupRecyclerView()
-        val vertical = ViewModelProvider(this,ViewModelProvider.NewInstanceFactory())[MainViewModelFinish::class.java]
+        val vertical = ViewModelProvider(
+            this,
+            ViewModelProvider.NewInstanceFactory()
+        )[MainViewModelFinish::class.java]
         vertical.listEvent.observe(viewLifecycleOwner) { value ->
             setEventDataVertical(value)
         }
         vertical.isLoading.observe(viewLifecycleOwner) {
             showLoading(it)
         }
-        if(!Network.isNetworkAvailable(context)) {
-            Toast.makeText(context,"No internet connection. Please turn on your network", Toast.LENGTH_LONG).show()
+        if (!Network.isNetworkAvailable(context)) {
+            Toast.makeText(
+                context,
+                "No internet connection. Please turn on your network",
+                Toast.LENGTH_LONG
+            ).show()
             vertical.isLoading.observe(viewLifecycleOwner) {
                 showLoading(it)
             }
@@ -59,50 +66,55 @@ class FinishedFragment : Fragment(), View.OnClickListener {
 
     }
 
-    private fun searchFinishedEvents(query : String?) {
-        val vertical = ViewModelProvider(this,ViewModelProvider.NewInstanceFactory())[MainViewModelFinish::class.java]
+    private fun searchFinishedEvents(query: String?) {
+        val vertical = ViewModelProvider(
+            this,
+            ViewModelProvider.NewInstanceFactory()
+        )[MainViewModelFinish::class.java]
 
-        vertical.searchFinishedEvents(0,20,query)
+        vertical.searchFinishedEvents(0, 20, query)
     }
-    private fun setEventDataVertical(event : List<DetailData>) {
+
+    private fun setEventDataVertical(event: List<DetailData>) {
         rvVerticalAdapter.submitList(event)
     }
+
     private fun setupRecyclerView() {
         rvVerticalAdapter = VerticalListAdapter(requireContext()) { detailData ->
             val intent = Intent(context, DetailActivity::class.java)
             intent.putExtra("EXTRA_DETAIL", detailData)
             startActivity(intent)
         }
-        binding.verticalOnly.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
+        binding.verticalOnly.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         binding.verticalOnly.adapter = rvVerticalAdapter
         binding.verticalOnly.addItemDecoration(
             SpaceItemDecoration(24)
         )
         binding.verticalOnly.clipToPadding = false
 
-        binding.settings.setOnClickListener{
+        binding.settings.setOnClickListener {
             val intent = Intent(requireContext(), SettingsActivity::class.java)
             startActivity(intent)
         }
     }
 
     override fun onClick(view: View?) {
-        when(view?.id) {
-            R.id.searchBar-> {
+        when (view?.id) {
+            R.id.searchBar -> {
                 searcView.visibility = VISIBLE
                 with(binding) {
                     searchView.setupWithSearchBar(searchBar)
                     searchView
                         .editText
-                        .setOnEditorActionListener{_,_,_ ->
+                        .setOnEditorActionListener { _, _, _ ->
                             val query = searcView.text.toString()
                             searchBar.setText(query)
                             searchView.hide()
 
-                            if(query.isNotEmpty()) {
+                            if (query.isNotEmpty()) {
                                 searchFinishedEvents(query)
-                            }
-                            else {
+                            } else {
                                 searchFinishedEvents(null)
                             }
                             false
@@ -111,7 +123,8 @@ class FinishedFragment : Fragment(), View.OnClickListener {
             }
         }
     }
-    private fun showLoading(isLoading : Boolean) {
-        binding.progressBar.visibility = if(isLoading) VISIBLE else View.GONE
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) VISIBLE else View.GONE
     }
 }

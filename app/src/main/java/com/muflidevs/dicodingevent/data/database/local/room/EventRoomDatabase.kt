@@ -8,11 +8,11 @@ import com.muflidevs.dicodingevent.data.database.local.entity.DetailDataEntity
 
 @Database(entities = [DetailDataEntity::class], version = 2)
 abstract class EventRoomDatabase : RoomDatabase() {
-    abstract fun eventDAO() : EventDAO
+    abstract fun eventDAO(): EventDAO
 
     companion object {
         @Volatile
-        private var INSTANCE : EventRoomDatabase? = null
+        private var INSTANCE: EventRoomDatabase? = null
 
         @JvmStatic
         fun getDatabase(context: Context): EventRoomDatabase {

@@ -18,9 +18,9 @@ import com.muflidevs.dicodingevent.ui.settings.dataStore
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
-class MainActivity : AppCompatActivity(){
-    private lateinit var binding : ActivityMainBinding
-    private lateinit var navigationBar : NavigationBarView
+class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var navigationBar: NavigationBarView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity(){
 
         lifecycleScope.launch {
             val isDarkModeActive = pref.getThemeSetting().first()
-            if(isDarkModeActive) {
+            if (isDarkModeActive) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
@@ -52,40 +52,53 @@ class MainActivity : AppCompatActivity(){
         val homeFragment = HomeFragment()
         val upcomingFragment = UpcomingFragments()
         val favoriteFragment = FavoriteFragment()
-        fragmentManager.beginTransaction().replace(binding.frameContainer.id,homeFragment,HomeFragment::class.java.simpleName).commit()
+        fragmentManager.beginTransaction()
+            .replace(binding.frameContainer.id, homeFragment, HomeFragment::class.java.simpleName)
+            .commit()
         navigationBar.setOnItemSelectedListener { item ->
-            when(item.itemId) {
+            when (item.itemId) {
                 R.id.upcoming -> {
                     fragmentManager.beginTransaction()
-                        .replace(binding.frameContainer.id,
+                        .replace(
+                            binding.frameContainer.id,
                             upcomingFragment,
-                            UpcomingFragments::class.java.simpleName)
+                            UpcomingFragments::class.java.simpleName
+                        )
                         .commit()
                     true
                 }
+
                 R.id.finished -> {
                     fragmentManager.beginTransaction()
-                        .replace(binding.frameContainer.id
-                            ,finishedFragment,
-                            FinishedFragment::class.java.simpleName)
+                        .replace(
+                            binding.frameContainer.id, finishedFragment,
+                            FinishedFragment::class.java.simpleName
+                        )
                         .commit()
                     true
                 }
+
                 R.id.home -> {
                     fragmentManager.beginTransaction()
-                        .replace(binding.frameContainer.id
-                            ,homeFragment
-                            ,HomeFragment::class.java.simpleName)
+                        .replace(
+                            binding.frameContainer.id,
+                            homeFragment,
+                            HomeFragment::class.java.simpleName
+                        )
                         .commit()
                     true
                 }
+
                 R.id.favorite -> {
                     fragmentManager.beginTransaction()
-                        .replace(binding.frameContainer.id
-                        ,favoriteFragment
-                        ,FavoriteFragment::class.java.simpleName).commit()
+                        .replace(
+                            binding.frameContainer.id,
+                            favoriteFragment,
+                            FavoriteFragment::class.java.simpleName
+                        ).commit()
                     true
                 }
+
                 else -> false
             }
         }

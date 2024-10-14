@@ -41,7 +41,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
-        val mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[MainViewModel::class.java]
+        val mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
         mainViewModel.listEvent.observe(viewLifecycleOwner) { value ->
             setEventData(value)
@@ -53,13 +53,17 @@ class HomeFragment : Fragment() {
         mainViewModel.isLoading.observe(viewLifecycleOwner) {
             showLoading(it)
         }
-        if(!Network.isNetworkAvailable(context)) {
-            Toast.makeText(context,"No internet connection. Please turn on your network", Toast.LENGTH_LONG).show()
+        if (!Network.isNetworkAvailable(context)) {
+            Toast.makeText(
+                context,
+                "No internet connection. Please turn on your network",
+                Toast.LENGTH_LONG
+            ).show()
             mainViewModel.isLoading.observe(viewLifecycleOwner) {
                 showLoading(it)
             }
         }
-        binding.settings.setOnClickListener{
+        binding.settings.setOnClickListener {
             val intent = Intent(requireContext(), SettingsActivity::class.java)
             startActivity(intent)
         }
@@ -80,7 +84,8 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
-        binding.horizontalOnly.layoutManager = LinearLayoutManager(context, GridLayoutManager.HORIZONTAL, false)
+        binding.horizontalOnly.layoutManager =
+            LinearLayoutManager(context, GridLayoutManager.HORIZONTAL, false)
         binding.horizontalOnly.adapter = rvHorizontalAdapter
 
         rvVerticalAdapter = VerticalListAdapter(requireContext()) { detailData ->
@@ -89,7 +94,8 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
-        binding.verticalOnly.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        binding.verticalOnly.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         binding.verticalOnly.adapter = rvVerticalAdapter
         binding.verticalOnly.addItemDecoration(SpaceItemDecoration(24))
     }

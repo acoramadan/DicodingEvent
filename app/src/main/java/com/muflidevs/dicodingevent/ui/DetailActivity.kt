@@ -22,7 +22,7 @@ import com.muflidevs.dicodingevent.ui.viewmodel.ViewModelFactory
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
     private lateinit var detailData: DetailData
-    private lateinit var eventInsertViewModel : MainViewModelFavorite
+    private lateinit var eventInsertViewModel: MainViewModelFavorite
     private var favorite = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +31,7 @@ class DetailActivity : AppCompatActivity() {
 
         eventInsertViewModel = obtainViewModel(this@DetailActivity)
         @Suppress("DEPRECATION")
-        detailData = intent.getParcelableExtra("EXTRA_DETAIL") ?:return
+        detailData = intent.getParcelableExtra("EXTRA_DETAIL") ?: return
 
 
         displayEventDetails(detailData)
@@ -48,7 +48,7 @@ class DetailActivity : AppCompatActivity() {
         }
 
         binding.btnFavorite.setOnClickListener {
-            if(!favorite) saveFavoriteEvent()
+            if (!favorite) saveFavoriteEvent()
             else deleteFavoriteEvent()
         }
 
@@ -61,21 +61,22 @@ class DetailActivity : AppCompatActivity() {
         binding.quota.text = (detailData.quota - detailData.registrants).toString()
         binding.beginTime.text = detailData.beginTime
         binding.category.text = detailData.category
-        binding.description.text = Html.fromHtml(detailData.description,Html.FROM_HTML_MODE_LEGACY)
+        binding.description.text = Html.fromHtml(detailData.description, Html.FROM_HTML_MODE_LEGACY)
         Glide.with(this)
             .load(detailData.imageLogo)
             .into(binding.image)
     }
 
 
-    private fun obtainViewModel(activity : AppCompatActivity): MainViewModelFavorite {
+    private fun obtainViewModel(activity: AppCompatActivity): MainViewModelFavorite {
         val factory = ViewModelFactory.getInstance(activity.application)
         return ViewModelProvider(activity, factory)[MainViewModelFavorite::class.java]
     }
 
     private fun deleteFavoriteEvent() {
         eventInsertViewModel.delete(detailData)
-        Toast.makeText(this,"Event berhasil dihapus dari daftar favorit",Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Event berhasil dihapus dari daftar favorit", Toast.LENGTH_SHORT)
+            .show()
     }
 
     private fun saveFavoriteEvent() {
@@ -99,25 +100,31 @@ class DetailActivity : AppCompatActivity() {
 
         showToast("Event berhasil ditambahkan ke favorit")
     }
-    private fun showToast(message:String) {
-        Toast.makeText(this,message, Toast.LENGTH_SHORT).show()
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
+
     private fun isFavorite() {
-        eventInsertViewModel.getAllEvents().observe(this) {favoriteEvents ->
-            favorite = favoriteEvents.any{it.id == detailData.id}
+        eventInsertViewModel.getAllEvents().observe(this) { favoriteEvents ->
+            favorite = favoriteEvents.any { it.id == detailData.id }
             updateIcon()
         }
     }
+
     private fun updateIcon() {
-        if(favorite) {
+        if (favorite) {
             binding.btnFavorite.setImageResource(R.drawable.favorite_added)
-            binding.btnFavorite.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this,R.color.favorite))
-            binding.btnFavorite.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(this,R.color.white))
-        }
-        else {
+            binding.btnFavorite.backgroundTintList =
+                ColorStateList.valueOf(ContextCompat.getColor(this, R.color.favorite))
+            binding.btnFavorite.imageTintList =
+                ColorStateList.valueOf(ContextCompat.getColor(this, R.color.white))
+        } else {
             binding.btnFavorite.setImageResource(R.drawable.favorite)
-            binding.btnFavorite.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this,R.color.white))
-            binding.btnFavorite.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(this,R.color.favorite))
+            binding.btnFavorite.backgroundTintList =
+                ColorStateList.valueOf(ContextCompat.getColor(this, R.color.white))
+            binding.btnFavorite.imageTintList =
+                ColorStateList.valueOf(ContextCompat.getColor(this, R.color.favorite))
         }
     }
 }

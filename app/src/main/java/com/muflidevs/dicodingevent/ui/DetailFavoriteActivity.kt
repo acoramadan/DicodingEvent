@@ -21,8 +21,8 @@ import com.muflidevs.dicodingevent.ui.viewmodel.MainViewModelFavorite
 import com.muflidevs.dicodingevent.ui.viewmodel.ViewModelFactory
 
 class DetailFavoriteActivity : AppCompatActivity() {
-    private lateinit var binding : ActivityDetailFavoriteBinding
-    private lateinit var eventInsertViewModel : MainViewModelFavorite
+    private lateinit var binding: ActivityDetailFavoriteBinding
+    private lateinit var eventInsertViewModel: MainViewModelFavorite
     private lateinit var detailDataEntity: DetailDataEntity
     private var favorite = false
     private val keyIntent = "EXTRA_ENTITY_DETAIL"
@@ -49,7 +49,7 @@ class DetailFavoriteActivity : AppCompatActivity() {
         }
 
         binding.btnFavorite.setOnClickListener {
-            if(!favorite) saveFavoriteEvent()
+            if (!favorite) saveFavoriteEvent()
             else deleteFavoriteEvent()
         }
     }
@@ -66,7 +66,7 @@ class DetailFavoriteActivity : AppCompatActivity() {
             .into(binding.image)
     }
 
-    private fun obtainViewModel(activity : AppCompatActivity): MainViewModelFavorite {
+    private fun obtainViewModel(activity: AppCompatActivity): MainViewModelFavorite {
         val factory = ViewModelFactory.getInstance(activity.application)
         return ViewModelProvider(activity, factory)[MainViewModelFavorite::class.java]
     }
@@ -97,25 +97,30 @@ class DetailFavoriteActivity : AppCompatActivity() {
         showToast("Event berhasil ditambahkan ke daftar favorit")
     }
 
-    private fun showToast(message:String) {
-        Toast.makeText(this,message, Toast.LENGTH_SHORT).show()
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
+
     private fun isFavorite() {
-        eventInsertViewModel.getAllEvents().observe(this) {favoriteEvents ->
-            favorite = favoriteEvents.any{it.id == detailDataEntity.id}
+        eventInsertViewModel.getAllEvents().observe(this) { favoriteEvents ->
+            favorite = favoriteEvents.any { it.id == detailDataEntity.id }
             updateIcon()
         }
     }
+
     private fun updateIcon() {
-        if(favorite) {
+        if (favorite) {
             binding.btnFavorite.setImageResource(R.drawable.favorite_added)
-            binding.btnFavorite.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this,R.color.favorite))
-            binding.btnFavorite.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(this,R.color.white))
-        }
-        else {
+            binding.btnFavorite.backgroundTintList =
+                ColorStateList.valueOf(ContextCompat.getColor(this, R.color.favorite))
+            binding.btnFavorite.imageTintList =
+                ColorStateList.valueOf(ContextCompat.getColor(this, R.color.white))
+        } else {
             binding.btnFavorite.setImageResource(R.drawable.favorite)
-            binding.btnFavorite.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this,R.color.white))
-            binding.btnFavorite.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(this,R.color.favorite))
+            binding.btnFavorite.backgroundTintList =
+                ColorStateList.valueOf(ContextCompat.getColor(this, R.color.white))
+            binding.btnFavorite.imageTintList =
+                ColorStateList.valueOf(ContextCompat.getColor(this, R.color.favorite))
         }
     }
 }

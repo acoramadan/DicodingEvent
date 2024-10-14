@@ -14,6 +14,7 @@ data class EventsResponse(
     @field:SerializedName("listEvents")
     val data: List<DetailData>
 )
+
 @Parcelize
 data class DetailData(
     @field:SerializedName("id")
