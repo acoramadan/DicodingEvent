@@ -9,8 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@color/white">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -64,8 +63,9 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/horizontal_only"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:paddingTop="2dp"
             android:background="@drawable/horizontal_shape"
             android:layout_marginStart="25dp"
@@ -75,7 +75,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="320dp"
+        android:layout_marginTop="350dp"
         android:orientation="vertical"
         android:background="@drawable/second_border_shape">
         <TextView
@@ -89,6 +89,16 @@
             android:background="@drawable/border_shape"
             android:fontFamily="@font/poppins_bold"
             android:textSize="15sp"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar2"
+            android:backgroundTint="@color/primary"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            tools:visibility="visible" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/vertical_only"

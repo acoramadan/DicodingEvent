@@ -75,10 +75,10 @@ class EventWorkerNotification(ctx: Context, params: WorkerParameters) :
         val pendingIntent = PendingIntent.getActivity(
             context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
-
+        val waktu  = "Waktu Event dimulai ${detailData.beginTime} sampai dengan ${detailData.endTime}"
         val notificationBuilder = NotificationCompat.Builder(context, channelId)
-            .setContentTitle(detailData.ownerName)
-            .setContentText(detailData.name)
+            .setContentTitle(detailData.name)
+            .setContentText(waktu)
             .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
